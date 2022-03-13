@@ -38,16 +38,16 @@ class Order implements OrderInterface
     /** Return list of products from basket */
     public function getProducts(): array
     {
-
+        return $this->basket;
     }
 
     public function getId(): ?int
     {
-        
+
     }
 
     public function setId()
     {
-        
+
     }
 }
