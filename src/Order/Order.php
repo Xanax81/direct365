@@ -46,8 +46,8 @@ class Order implements OrderInterface
         return $this->id;
     }
 
-    public function setId()
+    public function setId(int $id)
     {
-
+        $this->id = $id;
     }
 }
