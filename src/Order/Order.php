@@ -23,7 +23,7 @@ class Order implements OrderInterface
      */
     public function addProduct(ProductInterface $product, int $qty = 1)
     {
-
+        array_push($this->basket, [$product, $qty]);
     }
 
     /**
