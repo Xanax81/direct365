@@ -8,6 +8,8 @@ abstract class AbstractProduct implements ProductInterface
     protected $name;
     /** @var string */
     protected $description;
+    /** @var string */
+    protected $attributeName;
 
     /**
      * @return string
@@ -39,6 +41,22 @@ abstract class AbstractProduct implements ProductInterface
     public function setDescription(string $description)
     {
         $this->description = $description;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAttributeName(): string
+    {
+        return $this->attributeName;
+    }
+
+    /**
+     * @param string $attributeName
+     */
+    public function setAttributeName(string $attributeName)
+    {
+        $this->description = $attributeName;
     }
 
 

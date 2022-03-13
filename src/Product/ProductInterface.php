@@ -4,6 +4,8 @@ namespace D365\Product;
 
 interface ProductInterface
 {
+    public function getAttributeName(): string;
+
     public function getName(): string;
 
     public function getSku(): string;
@@ -13,7 +15,7 @@ interface ProductInterface
     public function getDescription(): string;
 
     /** @return mixed */
-    public function getAttribute(string $attributeName);
+    public function setAttributeName(string $attributeName);
 
     public function setName(string $name);
 
