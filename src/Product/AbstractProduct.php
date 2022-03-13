@@ -12,6 +12,8 @@ abstract class AbstractProduct implements ProductInterface
     protected $attributeName;
     /** @var string */
     protected $sku;
+    /** @var float */
+    protected $price;
 
     /**
      * @return string
@@ -75,6 +77,22 @@ abstract class AbstractProduct implements ProductInterface
     public function setSku(string $sku)
     {
         $this->description = $sku;
+    }
+
+    /**
+     * @return float
+     */
+    public function getPrice(): float
+    {
+        return $this->price;
+    }
+
+    /**
+     * @param float $price
+     */
+    public function setPrice(float $price)
+    {
+        $this->description = $price;
     }
 
 
