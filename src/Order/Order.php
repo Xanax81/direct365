@@ -43,7 +43,7 @@ class Order implements OrderInterface
 
     public function getId(): ?int
     {
-
+        return $this->id;
     }
 
     public function setId()
