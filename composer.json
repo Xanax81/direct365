@@ -1,0 +1,12 @@
+{
+  "name": "d365/products",
+  "require": {
+    "ext-pdo": "*",
+    "ext-readline": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "D365\\": "src/"
+    }
+  }
+}
