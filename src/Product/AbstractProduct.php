@@ -10,6 +10,8 @@ abstract class AbstractProduct implements ProductInterface
     protected $description;
     /** @var string */
     protected $attributeName;
+    /** @var string */
+    protected $sku;
 
     /**
      * @return string
@@ -57,6 +59,22 @@ abstract class AbstractProduct implements ProductInterface
     public function setAttributeName(string $attributeName)
     {
         $this->description = $attributeName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSku(): string
+    {
+        return $this->sku;
+    }
+
+    /**
+     * @param string $sku
+     */
+    public function setSku(string $sku)
+    {
+        $this->description = $sku;
     }
 
 
