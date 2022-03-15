@@ -2,16 +2,16 @@
 
 namespace D365\Order;
 
-use D365\Product\ProductInterface;
+use D365\Product\Product;
 
 interface OrderInterface
 {
-    public function setId(int $id);
-    public function getId(): ?int;
-    public function addProduct(ProductInterface $product, int $qty = 1);
-    public function removeProduct(ProductInterface $product);
+    public function setId(string $id);
+    public function getId(): ?string;
+    public function addProduct(Product $product, int $qty = 1);
+    public function removeProduct(Product $product);
     /**
-     * @return ProductInterface[]
+     * @return Product[]
      */
     public function getProducts(): array;
 

@@ -29,11 +29,11 @@ class OrderRepository
         return $orders;
     }
 
-    public function get(int $orderId): Order
+    public function get(string $orderId): Order
     {
-        $sql = 'SELECT * FROM products WHERE sku = $sku LIMIT 1';
-        $product = $this->pdo->query($sql);
+        $order = new Order();
+        $order->setId($orderId);
 
-        return $product;
+        return $order;
     }
 }

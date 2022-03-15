@@ -2,6 +2,7 @@
 
 namespace D365\Order;
 
+use D365\Product\Product;
 use D365\Product\ProductInterface;
 
 class Order implements OrderInterface
@@ -18,19 +19,19 @@ class Order implements OrderInterface
 
     /**
      * Adds a product to basket
-     * @param ProductInterface $product
+     * @param Product $product
      * @param int $qty
      */
-    public function addProduct(ProductInterface $product, int $qty = 1)
+    public function addProduct(Product $product, int $qty = 1)
     {
         array_push($this->basket, [$product, $qty]);
     }
 
     /**
      * Removes a product from basket
-     * @param ProductInterface $product
+     * @param Product $product
      */
-    public function removeProduct(ProductInterface $product)
+    public function removeProduct(Product $product)
     {
         unset($this->basket[$product->getSku()]);
     }
@@ -41,12 +42,12 @@ class Order implements OrderInterface
         return $this->basket;
     }
 
-    public function getId(): ?int
+    public function getId(): ?string
     {
         return $this->id;
     }
 
-    public function setId(int $id)
+    public function setId(string $id)
     {
         $this->id = $id;
     }
