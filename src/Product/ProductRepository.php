@@ -25,4 +25,12 @@ class ProductRepository
 
         return $products;
     }
+
+    public function getProduct($sku): string
+    {
+        $sql = 'SELECT * FROM products WHERE sku = $sku LIMIT 1';
+        $product = $this->pdo->query($sql);
+
+        return $product;
+    }
 }
