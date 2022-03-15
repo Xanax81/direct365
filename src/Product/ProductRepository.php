@@ -68,11 +68,19 @@ class ProductRepository
     {
         $sql = 'SELECT * FROM products WHERE sku = '. '\'' . $sku . '\'' .' LIMIT 1';
         $product = $this->pdo->query($sql)->fetch();
-        $actualProduct = new Product();
-        $actualProduct->setName($product['name']);
-        $actualProduct->setSku($product['sku']);
-        $actualProduct->setPrice($product['price']);
-        $actualProduct->setDescription($product['description']);
+        if ($product)
+        {
+            $actualProduct = new Product();
+            $actualProduct->setName($product['name']);
+            $actualProduct->setSku($product['sku']);
+            $actualProduct->setPrice($product['price']);
+            $actualProduct->setDescription($product['description']);
+        }else
+        {
+            echo "incorrect sku \n";
+            $actualProduct = new Product();
+            $actualProduct->setSku('incorrect');
+        }
 
         return $actualProduct;
     }
