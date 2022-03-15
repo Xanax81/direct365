@@ -9,7 +9,7 @@ use D365\Product\ProductRepository;
 require_once './vendor/autoload.php';
 
 if($argc > 1) {
-    $argument = strtolower($argv[$argc]);
+    $argument = strtolower($argv[1]);
 } else {
     echo<<<HELP
 Usage:
@@ -35,7 +35,7 @@ switch ($argument){
         /** @var ProductInterface[] $products */
         $products = $productRepository->getProducts();
         foreach ($products as $product) {
-            echo "{$product->getSku()} - {$product->getName()} - £{$product->getPrice()}\n";
+            echo "{$product[2]} - {$product[1]} - £{$product[4]}\n";
         }
 
         break;
