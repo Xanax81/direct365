@@ -6,5 +6,15 @@ use PDO;
 
 class ProductRepository
 {
+    /**
+     * @var PDO
+     */
+    private $pdo;
+    private $product;
 
+    public function __construct(PDO $pdo)
+    {
+        $this->pdo = $pdo;
+        $this->product = new Product();
+    }
 }
