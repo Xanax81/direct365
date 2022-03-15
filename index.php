@@ -75,7 +75,7 @@ switch ($argument){
         /** @var OrderInterface[] $orders */
         $orders = $orderRepository->getOrders();
         foreach ($orders as $order) {
-            echo $order->getId() . "\n";
+            echo "{$order[0]} - £{$order[1]} - {$order[2]}\n";
         }
         break;
 
