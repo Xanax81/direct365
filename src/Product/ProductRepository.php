@@ -50,14 +50,30 @@ class ProductRepository
         $sql = 'SELECT * FROM products';
         $products = $this->pdo->query($sql)->fetchAll();
 
-        return $products;
+        $arr = [];
+        foreach ($products as $product)
+        {
+            $temp = new Product();
+            $temp->setName($product['name']);
+            $temp->setSku($product['sku']);
+            $temp->setPrice($product['price']);
+            $temp->setDescription($product['description']);
+            array_push($arr, $temp);
+        }
+
+        return $arr;
     }
 
-    public function getProduct($sku): string
+    public function getProduct($sku): Product
     {
-        $sql = 'SELECT * FROM products WHERE sku = $sku LIMIT 1';
-        $product = $this->pdo->query($sql);
+        $sql = 'SELECT * FROM products WHERE sku = '. '\'' . $sku . '\'' .' LIMIT 1';
+        $product = $this->pdo->query($sql)->fetch();
+        $actualProduct = new Product();
+        $actualProduct->setName($product['name']);
+        $actualProduct->setSku($product['sku']);
+        $actualProduct->setPrice($product['price']);
+        $actualProduct->setDescription($product['description']);
 
-        return $product;
+        return $actualProduct;
     }
 }

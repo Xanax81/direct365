@@ -36,7 +36,7 @@ switch ($argument){
         /** @var ProductInterface[] $products */
         $products = $productRepository->getProducts();
         foreach ($products as $product) {
-            echo "{$product[2]} - {$product[1]} - £{$product[4]}\n";
+            echo "{$product->getSku()} - {$product->getName()} - £{$product->getPrice()}\n";
         }
 
         break;
