@@ -60,7 +60,7 @@ abstract class AbstractProduct implements ProductInterface
      */
     public function setAttributeName(string $attributeName)
     {
-        $this->description = $attributeName;
+        $this->attributeName = $attributeName;
     }
 
     /**
@@ -76,7 +76,7 @@ abstract class AbstractProduct implements ProductInterface
      */
     public function setSku(string $sku)
     {
-        $this->description = $sku;
+        $this->sku = $sku;
     }
 
     /**
@@ -92,7 +92,7 @@ abstract class AbstractProduct implements ProductInterface
      */
     public function setPrice(float $price)
     {
-        $this->description = $price;
+        $this->price = $price;
     }
 
 
