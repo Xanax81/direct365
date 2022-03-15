@@ -14,6 +14,7 @@ if($argc > 1) {
     echo<<<HELP
 Usage:
    php index.php listProducts
+   php index.php addProduct
    php index.php listOrders
    php index.php getOrder
    php index.php placeOrder
@@ -37,6 +38,16 @@ switch ($argument){
         foreach ($products as $product) {
             echo "{$product[2]} - {$product[1]} - £{$product[4]}\n";
         }
+
+        break;
+
+    case 'addproduct':
+        $name = readline('Enter product name: ');
+        $sku = readline('Enter product sku: ');
+        $description = readline('Enter product description: ');
+        $price = readline('Enter product price: ');
+
+        $productRepository->save($name, $sku, $description, $price);
 
         break;
 
