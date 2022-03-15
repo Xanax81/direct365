@@ -3,6 +3,7 @@
 use D365\Order\Order;
 use D365\Order\OrderInterface;
 use D365\Order\OrderRepository;
+use D365\Product\Product;
 use D365\Product\ProductInterface;
 use D365\Product\ProductRepository;
 
@@ -61,9 +62,18 @@ switch ($argument){
             if ($sku == 'Q') {
                 $add = false;
             } else {
-                /** @var ProductInterface $product */
-                $product = $productRepository->getProduct($sku);
-                $order->addProduct($product);
+                try {
+                    /** @var Product $product */
+                    $product = $productRepository->getProduct($sku);
+                    if ($product->getSku() != 'incorrect')
+                    {
+                        $order->addProduct($product);
+                    }
+                }catch (Exception $e)
+                {
+                    echo "Incorrect sku!";
+                }
+
             }
         }
 
@@ -81,16 +91,26 @@ switch ($argument){
 
     case 'getorder':
         $orderNumber = readline('Order number: ');
-        if(!is_numeric($orderNumber)) {
-            die('Order number must be a number');
-        }
+//        if(!is_numeric($orderNumber)) {
+//            die('Order number must be a number');
+//        }
 
         $order = $orderRepository->get($orderNumber);
         echo "products on order {$order->getId()};\n";
 
-        /** @var ProductInterface $product */
+        $sql = 'SELECT * FROM order_products WHERE orderid = \''. $order->getId() .'\'';
+        $orderedProducts = $pdo->query($sql)->fetchAll();
+
+        foreach ($orderedProducts as $orderedProduct)
+        {
+            /** @var Product $product */
+            $product = $productRepository->getProduct($orderedProduct['productid']);
+            $order->addProduct($product);
+        }
+
+        /** @var Product $product */
         foreach ($order->getProducts() as $product) {
-            echo "\t {$product->getSku()} - {$product->getName()} - {$product->getPrice()}\n";
+            echo "\t {$product[0]->getSku()} - {$product[0]->getName()} - {$product[0]->getPrice()}\n";
         }
 
         break;
