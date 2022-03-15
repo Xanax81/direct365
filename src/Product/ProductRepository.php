@@ -6,6 +6,7 @@ use PDO;
 
 class ProductRepository
 {
+
     /**
      * @var PDO
      */
@@ -16,6 +17,32 @@ class ProductRepository
     {
         $this->pdo = $pdo;
         $this->product = new Product();
+    }
+
+    public function save($name, $sku, $description, $price)
+    {
+        $this->product->setName($name);
+        $this->product->setSku($sku);
+        $this->product->setDescription($description);
+        $this->product->setPrice($price);
+
+        $this->saveToDatabase();
+    }
+
+    private function saveToDatabase()
+    {
+        $name = $this->product->getName();
+        $sku = $this->product->getSku();
+        $description = $this->product->getDescription();
+        $price = $this->product->getPrice();
+
+        $statement = $this->pdo->prepare('INSERT INTO products (name, sku, description, price)
+            VALUES (:name, :sku, :description, :price)');
+        $statement->bindParam(':name', $name);
+        $statement->bindParam(':sku', $sku);
+        $statement->bindParam(':description', $description);
+        $statement->bindParam(':price', $price);
+        $statement->execute();
     }
 
     public function getProducts(): array
